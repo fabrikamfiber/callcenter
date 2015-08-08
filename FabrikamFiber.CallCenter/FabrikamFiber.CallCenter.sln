@@ -1,0 +1,59 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamFiber.Web", "FabrikamFiber.Web\FabrikamFiber.Web.csproj", "{456D6BF0-21B0-4995-9D77-76FA13AD95DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamFiber.DAL", "FabrikamFiber.DAL\FabrikamFiber.DAL.csproj", "{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{665D3A79-ECDD-4379-8AC2-101303BF88C3}"
+	ProjectSection(SolutionItems) = preProject
+		Libs\EntityFramework.dll = Libs\EntityFramework.dll
+		Libs\Ninject.dll = Libs\Ninject.dll
+		Libs\Ninject.Web.Mvc.dll = Libs\Ninject.Web.Mvc.dll
+		Libs\nunit.framework.dll = Libs\nunit.framework.dll
+		Libs\nunit.mocks.dll = Libs\nunit.mocks.dll
+		Libs\pnunit.framework.dll = Libs\pnunit.framework.dll
+		Libs\System.Data.SqlServerCe.dll = Libs\System.Data.SqlServerCe.dll
+		Libs\System.Data.SqlServerCe.Entity.dll = Libs\System.Data.SqlServerCe.Entity.dll
+		Libs\T4Scaffolding.dll = Libs\T4Scaffolding.dll
+		Libs\WebActivator.dll = Libs\WebActivator.dll
+		Libs\xunit.dll = Libs\xunit.dll
+		Libs\xunit.extensions.dll = Libs\xunit.extensions.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App Projects", "App Projects", "{DDB1489A-482B-41A1-B13B-F9FF93CE108E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Projects", "Test Projects", "{DF8AE614-8E4D-4BDA-9879-7331588005B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Settings", "Settings", "{68013E5E-5CF7-4CE1-B321-EE330FB455FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Definitions", "Service Definitions", "{762CCF2C-2DF5-4BE7-B2D1-E812A700F754}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B160C3A-0040-46E2-97B5-D707FFCD23E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{456D6BF0-21B0-4995-9D77-76FA13AD95DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{456D6BF0-21B0-4995-9D77-76FA13AD95DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{456D6BF0-21B0-4995-9D77-76FA13AD95DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{456D6BF0-21B0-4995-9D77-76FA13AD95DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{456D6BF0-21B0-4995-9D77-76FA13AD95DA} = {DDB1489A-482B-41A1-B13B-F9FF93CE108E}
+		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442} = {DDB1489A-482B-41A1-B13B-F9FF93CE108E}
+		{68013E5E-5CF7-4CE1-B321-EE330FB455FA} = {DF8AE614-8E4D-4BDA-9879-7331588005B1}
+		{762CCF2C-2DF5-4BE7-B2D1-E812A700F754} = {DF8AE614-8E4D-4BDA-9879-7331588005B1}
+	EndGlobalSection
+EndGlobal
