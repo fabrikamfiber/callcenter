@@ -6,7 +6,7 @@
   </RunConfiguration>
   
   <TestRunParameters>
-    <Parameter name="webAppUrl" value="http://fabrikambash.azurewebsites.net" />
+    <Parameter name="webAppUrl" value="http://fabrikam-qa.azurewebsites.net" />
   </TestRunParameters>
 
   <!-- Adapter Specific sections -->
