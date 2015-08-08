@@ -126,6 +126,8 @@
     <Compile Include="App_Start\NinjectMVC3.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\ServiceTicketsController.cs" />
     <Compile Include="ViewModels\DiscountViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -232,6 +234,17 @@
     <None Include="Content\fonts\segoewp-webfont.woff">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Views\Reports\Employees.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\Tickets.cshtml" />
+    <Content Include="Views\ServiceTickets\Assign.cshtml" />
+    <Content Include="Views\ServiceTickets\Create.cshtml" />
+    <Content Include="Views\ServiceTickets\Details.cshtml" />
+    <Content Include="Views\ServiceTickets\Edit.cshtml" />
+    <Content Include="Views\ServiceTickets\Index.cshtml" />
+    <Content Include="Views\ServiceTickets\Schedule.cshtml" />
+    <Content Include="Views\ServiceTickets\_CreateOrEdit.cshtml" />
+    <Content Include="Views\ServiceTickets\_ServiceLog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fullcalendar.css">

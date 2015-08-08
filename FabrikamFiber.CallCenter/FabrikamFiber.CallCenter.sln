@@ -31,6 +31,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Definitions", "Service Definitions", "{762CCF2C-2DF5-4BE7-B2D1-E812A700F754}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B160C3A-0040-46E2-97B5-D707FFCD23E3}"
+	ProjectSection(SolutionItems) = preProject
+		CI-CodeCoverage.RunSettings = CI-CodeCoverage.RunSettings
+		DataCollector-Level2.testsettings = DataCollector-Level2.testsettings
+		runsettings.runsettings = runsettings.runsettings
+		TestSettings.testsettings = TestSettings.testsettings
+		WeatherWSDL Test Steps.txt = WeatherWSDL Test Steps.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyShuttle.Web.PureSeleniumTests", "FabrikamFiber.Web.PureSeleniumTests\MyShuttle.Web.PureSeleniumTests.csproj", "{AF7F18E7-E7D0-4250-A6E2-8A2D900E22DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabrikamFiber.Web.Tests", "FabrikamFiber.Web.Tests\FabrikamFiber.Web.Tests.csproj", "{2FE8E250-4218-4B31-AB23-D9B91ABD842B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +57,14 @@ Global
 		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF7F18E7-E7D0-4250-A6E2-8A2D900E22DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF7F18E7-E7D0-4250-A6E2-8A2D900E22DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF7F18E7-E7D0-4250-A6E2-8A2D900E22DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF7F18E7-E7D0-4250-A6E2-8A2D900E22DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FE8E250-4218-4B31-AB23-D9B91ABD842B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FE8E250-4218-4B31-AB23-D9B91ABD842B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FE8E250-4218-4B31-AB23-D9B91ABD842B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FE8E250-4218-4B31-AB23-D9B91ABD842B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +74,7 @@ Global
 		{64058BA2-30B8-4A35-8D4C-CB4F6D6D7442} = {DDB1489A-482B-41A1-B13B-F9FF93CE108E}
 		{68013E5E-5CF7-4CE1-B321-EE330FB455FA} = {DF8AE614-8E4D-4BDA-9879-7331588005B1}
 		{762CCF2C-2DF5-4BE7-B2D1-E812A700F754} = {DF8AE614-8E4D-4BDA-9879-7331588005B1}
+		{AF7F18E7-E7D0-4250-A6E2-8A2D900E22DD} = {DF8AE614-8E4D-4BDA-9879-7331588005B1}
+		{2FE8E250-4218-4B31-AB23-D9B91ABD842B} = {DF8AE614-8E4D-4BDA-9879-7331588005B1}
 	EndGlobalSection
 EndGlobal
