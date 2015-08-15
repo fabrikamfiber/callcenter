@@ -1,0 +1,769 @@
+<div></div>
+<h1 style="margin: 12pt 0in 0pt;"><span style="font-family: Times New Roman;"><br /> </span></h1>
+<div></div>
+<p><span style="font-size: small;">The<strong> xWebAdministration</strong> module is a part of the Windows PowerShell Desired State Configuration (DSC) Resource Kit, which is a collection of DSC Resources produced by the PowerShell Team. This module contains  the <strong>xWebAppPool</strong>, <strong>xWebsite</strong><strong>,</strong><strong> </strong><strong>xWebApplication</strong>, <strong>xWebVirtualDirectory</strong><strong> &amp; xWebConfigKeyValue</strong> resources. These DSC resources allow creation and configuration of various IIS artifacts.</span></p>
+<p><span style="font-size: small;"><strong>All of the resources in the DSC Resource Kit are provided AS IS, and are not supported through any Microsoft standard support program or service. The "x" in xWebAdministration stands for experimental</strong>, which  means that these resources will be <strong>fix forward</strong> and monitored by the module owner(s).</span></p>
+<p><span style="font-size: small;">Please leave comments, feature requests, and bug reports in the Q &amp; A tab for this module.</span></p>
+<p><span style="font-size: small;">If you would like to modify <strong>xWebAdministration</strong> module, feel free. When modifying, please update the module name, resource friendly name, and MOF class name (instructions below). As specified in the license,  you may copy or modify this resource as long as they are used on the Windows Platform.</span></p>
+<p><span style="font-size: small;">For more information about Windows PowerShell Desired State Configuration, check out the blog posts on the <a href="http://blogs.msdn.com/b/powershell/">PowerShell Blog</a> (<a href="http://blogs.msdn.com/b/powershell/archive/2013/11/01/configuration-in-a-devops-world-windows-powershell-desired-state-configuration.aspx">this</a> is a good starting point). There  are also great community resources, such as <a href="http://powershell.org/wp/tag/dsc/"> PowerShell.org</a>, or <a href="http://www.powershellmagazine.com/tag/dsc/">PowerShell Magazine</a>. For more information on the DSC Resource Kit, check out <a href="http://go.microsoft.com/fwlink/?LinkID=389546">this blog post</a>.</span></p>
+<div></div>
+<h1 style="margin: 12pt 0in 0pt;"><span style="color: #2e74b5; font-family: Calibri Light; font-size: large;">Installation</span><span style="font-family: Times New Roman;"><br /> </span></h1>
+<div></div>
+<p><span style="font-size: small;">To install <strong>xWebAdministration</strong> module:</span></p>
+<ul>
+<li><span style="font-size: small;">Unzip the content under $env:ProgramFiles\WindowsPowerShell\Modules folder </span></li>
+</ul>
+<p><span style="font-size: small;">To confirm installation:</span></p>
+<ul>
+<li><span style="font-size: small;">Run <strong>Get-DSCResource</strong> to see that <strong>xWebAppPool</strong>, <strong>xWebsite</strong><strong>,</strong><strong> </strong><strong>xWebApplication</strong>, <strong>xWebVirtualDirectory</strong><strong> &amp; xWebConfigKeyValue</strong> are among the DSC Resources listed </span></li>
+</ul>
+<h1 style="margin: 12pt 0in 0pt;"><strong><span style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;;"><span style="color: #2e74b5; font-size: large;">Requirements</span></span></strong></h1>
+<p><span style="font-size: small;">This module requires the latest version of PowerShell (v4.0, which ships in Windows 8.1 or Windows Server 2012R2). It also requires IIS features. To easily use PowerShell 4.0 on older operating systems, </span><a href="http://www.microsoft.com/en-us/download/details.aspx?id=40855"><span style="font-size: small;">install WMF 4.0</span></a><span style="font-size: small;">.&nbsp; Please read the installation instructions that are present on both the download page  and the release notes for WMF 4.0.</span></p>
+<p><strong><span style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;;"><span style="color: #2e74b5; font-size: large;">Description</span></span></strong></p>
+<p><span style="font-size: small;">The<strong> xWebAdministration</strong> module is a part of the Windows PowerShell Desired State Configuration (DSC) Resource Kit, which is a collection of DSC Resources produced by the PowerShell Team. This module contains  the <strong>xWebAppPool</strong>, <strong>xWebsite</strong><strong>,</strong><strong> </strong><strong>xWebApplication</strong>, <strong>xWebVirtualDirectory</strong><strong> &amp; xWebConfigKeyValue</strong> resources. These DSC resources allow creation and configuration of various IIS artifacts.</span><span style="font-size: small;"><span style="font-family: Times New Roman;"> </span></span></p>
+<h1 style="margin: 12pt 0in 0pt;"><span style="color: #2e74b5; font-family: Calibri Light; font-size: large;">Details</span></h1>
+<p><span style="font-size: small;"><strong>xWebAppPool</strong> resource has following properties:</span></p>
+<ul>
+<li><span style="font-size: small;"><strong>Name</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The desired name of the web application pool </span></li>
+<li><span style="font-size: small;"><strong>Ensure</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Should the application pool be present or absent </span></li>
+<li><span style="font-size: small;"><strong>State</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; State of the application pool &ndash; started or stopped </span></li>
+</ul>
+<p><span style="font-size: small;"><strong>xWebsite</strong> resource has following properties:</span></p>
+<ul>
+<li><span style="font-size: small;"><strong>Name</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>The desired name of the website <strong>&nbsp;</strong> </span></li>
+<li><span style="font-size: small;"><strong>PhysicalPath</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>&nbsp; The path to the files that compose the website </span></li>
+<li><span style="font-size: small;"><strong>State</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>State of the website &ndash; started or stopped </span></li>
+<li><span style="font-size: small;"><strong>BindingInfo</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>&nbsp; Website's binding information </span></li>
+<li><span style="font-size: small;"><strong>ApplicationPool</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp; </strong>&nbsp;&nbsp; The website&rsquo;s application pool </span></li>
+<li><span style="font-size: small;"><strong>Ensure</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; </strong>Should website be present or absent </span></li>
+</ul>
+<p><span style="font-size: small;"><strong>xWebApplication</strong> resource has following properties:</span></p>
+<ul>
+<li><span style="font-size: small;"><strong>Website</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>Name of website with which web application is associated &nbsp; </span></li>
+<li><span style="font-size: small;"><strong>Name</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The desired name of the web application </span></li>
+<li><span style="font-size: small;"><strong>WebAppPool</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>&nbsp; Web application&rsquo;s application pool&nbsp; </span></li>
+<li><span style="font-size: small;"><strong>PhysicalPath</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>The path to the files that compose the web application </span></li>
+<li><span style="font-size: small;"><strong>Ensure</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Should web application be present or absent </span></li>
+</ul>
+<p><span style="font-size: small;"><strong>xWebVirtualDirectory</strong> resource has following properties:</span></p>
+<ul>
+<li><span style="font-size: small;"><strong>Website</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>Name of website with which virtual directory is associated&nbsp; &nbsp; </span> </li>
+<li><span style="font-size: small;"><strong>WebApplication</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp; </strong>&nbsp; Web application name for the virtual directory </span></li>
+<li><span style="font-size: small;"><strong>PhysicalPath</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>The path to the files that compose the virtual directory </span></li>
+<li><span style="font-size: small;"><strong>Name</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The name of the virtual directory </span></li>
+<li><span style="font-size: small;"><strong>Ensure</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ensures if the virtual directory is Present or Absent. </span></li>
+<li><span style="font-size: small;"><strong>State</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; State of the application pool. Can be Started or Stopped. </span></li>
+</ul>
+<p><span style="font-size: small;"><strong>xWebConfigKeyValue</strong> resource has following properties:</span></p>
+<ul>
+<li><span style="font-size: small;"><strong>WebsitePath</strong><strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>Path to website location (IIS or WebAdministration format) </span></li>
+<li><span style="font-size: small;"><strong>ConfigSection</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Section to update (only AppSettings supported as of now) </span></li>
+<li><span style="font-size: small;"><strong>KeyValuePair</strong>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Key value pair for AppSettings (ItemCollection format) </span></li>
+</ul>
+<h1 style="margin: 12pt 0in 0pt;"><span style="color: #2e74b5; font-family: Calibri Light; font-size: large;">Renaming Requirements</span></h1>
+<p><span style="font-size: small;">When making changes to these resources, we suggest the following practice:</span></p>
+<ol style="list-style-type: decimal; direction: ltr;">
+<li>
+<p><span style="font-size: small;">Update the following names by replacing MSFT with your company/community name and replacing the <strong>&ldquo;x&rdquo;</strong> with <strong>"c"</strong> (short for "Community") or another prefix of your choice:</span></p>
+<ul>
+<li><span style="font-size: small;"><strong><span lang="EN">Module name (ex: xWebAdministration</span></strong> becomes <strong>cWebAdministration</strong>) </span></li>
+<li><span style="font-size: small;"><strong><span lang="EN">Resource folder (ex: MSFT_xWebsite</span></strong> becomes <strong>Contoso_cWebsite</strong>) </span></li>
+<li><span style="font-size: small;"><strong><span lang="EN">Resource Name (ex: MSFT_xWebsite</span></strong> becomes <strong>Contoso_cWebsite</strong>) </span></li>
+<li><span style="font-size: small;"><strong><span lang="EN">Resource Friendly Name (ex: xWebsite</span></strong> becomes <strong>cWebsite</strong>) </span></li>
+<li><span style="font-size: small;"><strong><span lang="EN">MOF class name (ex: MSFT_xWebsite</span></strong> becomes <strong>Contoso_cWebsite</strong>) </span></li>
+<li><span style="font-size: small;"><strong><span lang="EN">Filename for the &lt;resource&gt;.schema.mof (ex: MSFT_Website</span></strong>.schema.mof becomes <strong>Contoso_cWebsite</strong>.schema.mof) </span></li>
+</ul>
+</li>
+<li>
+<p style="color: #000000; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 0pt;"><span style="font-size: small;" lang="EN">Update module and metadata information in the module manifest</span></p>
+</li>
+<li>
+<p style="color: #000000; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 0pt;"><span style="font-size: small;" lang="EN">Update any configuration that use these resources</span></p>
+</li>
+</ol>
+<p><span style="font-size: small;"><em><span style="line-height: 107%; font-family: 'Calibri','sans-serif'; color: #424242;" lang="EN">We reserve resource and module names without prefixes ("x" or "c") for future use (e.g. "MSFT_WebAdministration" or "WebAdministration").&nbsp;  If the next version of Windows Server ships with a "WebAdministration" resource, we don't want to break any configurations that use any community modifications.&nbsp; Please keep a prefix such as "c" on all community modifications. </span></em></span></p>
+<h1 style="margin: 12pt 0in 0pt;"><strong><span style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;;"><span style="color: #2e74b5; font-size: large;">Example: Stopping the default website</span></span></strong></h1>
+<p><span style="font-size: small;">When configuring a new IIS Server, several references recommend removing or stopping the default website for security purposes. This example sets up your IIS webserver by installing IIS Windows Feature. Following that, it will  stop the default website by setting &ldquo;State = Stopped &rdquo;.</span></p>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>PowerShell</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">powershell</span>
+<pre class="hidden">configuration Sample_xWebsite_StopDefault
+{
+    param
+    (
+        # Target nodes to apply the configuration
+        [string[]]$NodeName = 'localhost'
+    )
+
+    # Import the module that defines custom resources
+    Import-DscResource -Module xWebAdministration
+
+    Node $NodeName
+    {
+        # Install the IIS role
+        WindowsFeature IIS
+        {
+            Ensure          = "Present"
+            Name            = "Web-Server"
+        }
+
+        # Stop the default website
+        xWebsite DefaultSite 
+        {
+            Ensure          = "Present"
+            Name            = "Default Web Site"
+            State           = "Stopped"
+            PhysicalPath    = "C:\inetpub\wwwroot"
+            DependsOn       = "[WindowsFeature]IIS"
+        }
+    }
+}</pre>
+<div class="preview">
+<pre class="powershell">configuration&nbsp;Sample_xWebsite_StopDefault&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__keyword">param</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Target&nbsp;nodes&nbsp;to&nbsp;apply&nbsp;the&nbsp;configuration</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[string[]]<span class="powerShell__variable">$NodeName</span>&nbsp;=&nbsp;<span class="powerShell__string">'localhost'</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Import&nbsp;the&nbsp;module&nbsp;that&nbsp;defines&nbsp;custom&nbsp;resources</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Import<span class="powerShell__operator">-</span>DscResource&nbsp;<span class="powerShell__operator">-</span>Module&nbsp;xWebAdministration&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;<span class="powerShell__variable">$NodeName</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Install&nbsp;the&nbsp;IIS&nbsp;role</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WindowsFeature&nbsp;IIS&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Web-Server"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Stop&nbsp;the&nbsp;default&nbsp;website</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebsite&nbsp;DefaultSite&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Default&nbsp;Web&nbsp;Site"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Stopped"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"C:\inetpub\wwwroot"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"[WindowsFeature]IIS"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode"></div>
+<h1 class="endscriptcode" style="margin: 12pt 0in 0pt;"><strong><span style="font-family: &quot;Calibri Light&quot;,&quot;sans-serif&quot;;"><span style="color: #2e74b5; font-size: large;">Example: Create a new website</span></span></strong></h1>
+<div class="endscriptcode"></div>
+<p class="endscriptcode"><span style="font-size: small;">While setting up IIS and stopping the default website is interesting, it isn&rsquo;t quite useful yet. After all, typically people use IIS to set up websites of their own with custom protocol and bindings.  Fortunately, using DSC, adding another website is as simple as using the File and xWebsite resources to copy the website content and configure the website.</span></p>
+<div class="endscriptcode"></div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>PowerShell</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">powershell</span>
+<pre class="hidden">configuration Sample_xWebsite_NewWebsite
+{
+    param
+    (
+        # Target nodes to apply the configuration
+        [string[]]$NodeName = 'localhost',
+
+        # Name of the website to create
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [String]$WebSiteName,
+
+        # Source Path for Website content
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [String]$SourcePath,
+
+        # Destination path for Website content
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [String]$DestinationPath
+    )
+
+    # Import the module that defines custom resources
+    Import-DscResource -Module xWebAdministration
+
+    Node $NodeName
+    {
+        # Install the IIS role
+        WindowsFeature IIS
+        {
+            Ensure          = "Present"
+            Name            = "Web-Server"
+        }
+
+        # Install the ASP .NET 4.5 role
+        WindowsFeature AspNet45
+        {
+            Ensure          = "Present"
+            Name            = "Web-Asp-Net45"
+        }
+
+        # Stop the default website
+        xWebsite DefaultSite 
+        {
+            Ensure          = "Present"
+            Name            = "Default Web Site"
+            State           = "Stopped"
+            PhysicalPath    = "C:\inetpub\wwwroot"
+            DependsOn       = "[WindowsFeature]IIS"
+        }
+
+        # Copy the website content
+        File WebContent
+        {
+            Ensure          = "Present"
+            SourcePath      = $SourcePath
+            DestinationPath = $DestinationPath
+            Recurse         = $true
+            Type            = "Directory"
+            DependsOn       = "[WindowsFeature]AspNet45"
+        }       
+
+        # Create the new Website with HTTPS
+        xWebsite NewWebsite
+        {
+            Ensure          = "Present"
+            Name            = $WebSiteName
+            State           = "Started"
+            PhysicalPath    = $DestinationPath
+            BindingInfo     = MSFT_xWebBindingInformation
+                             {
+                               Protocol              = "HTTPS"
+                               Port                  = 8443
+                               CertificateThumbprint ="71AD93562316F21F74606F1096B85D66289ED60F"
+                               CertificateStoreName  = "WebHosting"
+                             }
+            DependsOn       = "[File]WebContent"
+        }
+    }
+} </pre>
+<div class="preview">
+<pre class="powershell">configuration&nbsp;Sample_xWebsite_NewWebsite&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__keyword">param</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Target&nbsp;nodes&nbsp;to&nbsp;apply&nbsp;the&nbsp;configuration</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[string[]]<span class="powerShell__variable">$NodeName</span>&nbsp;=&nbsp;<span class="powerShell__string">'localhost'</span>,&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Name&nbsp;of&nbsp;the&nbsp;website&nbsp;to&nbsp;create</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Parameter(Mandatory)]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ValidateNotNullOrEmpty()]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[String]<span class="powerShell__variable">$WebSiteName</span>,&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Source&nbsp;Path&nbsp;for&nbsp;Website&nbsp;content</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Parameter(Mandatory)]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ValidateNotNullOrEmpty()]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[String]<span class="powerShell__variable">$SourcePath</span>,&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Destination&nbsp;path&nbsp;for&nbsp;Website&nbsp;content</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Parameter(Mandatory)]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ValidateNotNullOrEmpty()]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[String]<span class="powerShell__variable">$DestinationPath</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Import&nbsp;the&nbsp;module&nbsp;that&nbsp;defines&nbsp;custom&nbsp;resources</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Import<span class="powerShell__operator">-</span>DscResource&nbsp;<span class="powerShell__operator">-</span>Module&nbsp;xWebAdministration&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;<span class="powerShell__variable">$NodeName</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Install&nbsp;the&nbsp;IIS&nbsp;role</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WindowsFeature&nbsp;IIS&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Web-Server"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Install&nbsp;the&nbsp;ASP&nbsp;.NET&nbsp;4.5&nbsp;role</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WindowsFeature&nbsp;AspNet45&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Web-Asp-Net45"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Stop&nbsp;the&nbsp;default&nbsp;website</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebsite&nbsp;DefaultSite&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Default&nbsp;Web&nbsp;Site"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Stopped"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"C:\inetpub\wwwroot"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"[WindowsFeature]IIS"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Copy&nbsp;the&nbsp;website&nbsp;content</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;WebContent&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SourcePath&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$SourcePath</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestinationPath&nbsp;=&nbsp;<span class="powerShell__variable">$DestinationPath</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recurse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$true</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__alias">Type</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Directory"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"[WindowsFeature]AspNet45"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Create&nbsp;the&nbsp;new&nbsp;Website&nbsp;with&nbsp;HTTPS</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebsite&nbsp;NewWebsite&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$WebSiteName</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Started"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$DestinationPath</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BindingInfo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;MSFT_xWebBindingInformation&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Protocol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"HTTPS"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;8443&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CertificateThumbprint&nbsp;=<span class="powerShell__string">"71AD93562316F21F74606F1096B85D66289ED60F"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CertificateStoreName&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"WebHosting"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"[File]WebContent"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}&nbsp;</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode"></div>
+<div class="endscriptcode">&nbsp;</div>
+<h1 class="endscriptcode" style="margin: 12pt 0in 0pt;"><span style="color: #2e74b5; font-family: Calibri Light; font-size: large;">Example: Creating the default website using configuration data</span></h1>
+<div class="endscriptcode"></div>
+<p class="endscriptcode"><span style="font-size: small;">In this example, we&rsquo;ve moved the parameters used to generate the website into a configuration data file &ndash; all of the variant portions of the configuration are stored in a separate file. This  can be a powerful tool when using DSC to configure a project that will be deployed to multiple environments. For example, users managing larger environments may want to test their configuration on a small number of machines before deploying it across many  more machines in their production environment.<br /> <br /> Configuration files are made with this in mind. This is an example configuration data file (saved as a .psd1). &nbsp;</span></p>
+<div class="endscriptcode"></div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>PowerShell</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">powershell</span>
+<pre class="hidden">configuration Sample_xWebsite_FromConfigurationData
+{
+    # Import the module that defines custom resources
+    Import-DscResource -Module xWebAdministration
+
+    # Dynamically find the applicable nodes from configuration data
+    Node $AllNodes.where{$_.Role -eq "Web"}.NodeName
+    {
+        # Install the IIS role
+        WindowsFeature IIS
+        {
+            Ensure          = "Present"
+            Name            = "Web-Server"
+        }
+
+        # Install the ASP .NET 4.5 role
+        WindowsFeature AspNet45
+        {
+            Ensure          = "Present"
+            Name            = "Web-Asp-Net45"
+        }
+
+        # Stop an existing website (set up in Sample_xWebsite_Default)
+        xWebsite DefaultSite 
+        {
+            Ensure          = "Present"
+            Name            = "Default Web Site"
+            State           = "Stopped"
+            PhysicalPath    = $Node.DefaultWebSitePath
+            DependsOn       = "[WindowsFeature]IIS"
+        }
+
+        # Copy the website content
+        File WebContent
+        {
+            Ensure          = "Present"
+            SourcePath      = $Node.SourcePath
+            DestinationPath = $Node.DestinationPath
+            Recurse         = $true
+            Type            = "Directory"
+            DependsOn       = "[WindowsFeature]AspNet45"
+        }       
+
+        # Create a new website
+        xWebsite BakeryWebSite 
+        {
+            Ensure          = "Present"
+            Name            = $Node.WebsiteName
+            State           = "Started"
+            PhysicalPath    = $Node.DestinationPath
+            DependsOn       = "[File]WebContent"
+        }
+    }
+}
+
+# Content of configuration data file (e.g. ConfigurationData.psd1) could be:
+
+# Hashtable to define the environmental data
+@{
+    # Node specific data
+    AllNodes = @(
+
+       # All the WebServer has following identical information 
+       @{
+            NodeName           = "*"
+            WebsiteName        = "FourthCoffee"
+            SourcePath         = "C:\BakeryWebsite\"
+            DestinationPath    = "C:\inetpub\FourthCoffee"
+            DefaultWebSitePath = "C:\inetpub\wwwroot"
+       },
+
+       @{
+            NodeName           = "WebServer1.fourthcoffee.com"
+            Role               = "Web"
+        },
+
+       @{
+            NodeName           = "WebServer2.fourthcoffee.com"
+            Role               = "Web"
+        }
+    );
+}
+
+# Pass the configuration data to configuration as follows:
+Sample_xWebsite_FromConfigurationData -ConfigurationData ConfigurationData.psd1</pre>
+<div class="preview">
+<pre class="powershell">configuration&nbsp;Sample_xWebsite_FromConfigurationData&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Import&nbsp;the&nbsp;module&nbsp;that&nbsp;defines&nbsp;custom&nbsp;resources</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Import<span class="powerShell__operator">-</span>DscResource&nbsp;<span class="powerShell__operator">-</span>Module&nbsp;xWebAdministration&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Dynamically&nbsp;find&nbsp;the&nbsp;applicable&nbsp;nodes&nbsp;from&nbsp;configuration&nbsp;data</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;<span class="powerShell__variable">$AllNodes</span>.where{<span class="powerShell__variable">$_</span>.Role&nbsp;<span class="powerShell__operator">-</span>eq&nbsp;<span class="powerShell__string">"Web"</span>}.NodeName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Install&nbsp;the&nbsp;IIS&nbsp;role</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WindowsFeature&nbsp;IIS&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Web-Server"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Install&nbsp;the&nbsp;ASP&nbsp;.NET&nbsp;4.5&nbsp;role</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WindowsFeature&nbsp;AspNet45&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Web-Asp-Net45"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Stop&nbsp;an&nbsp;existing&nbsp;website&nbsp;(set&nbsp;up&nbsp;in&nbsp;Sample_xWebsite_Default)</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebsite&nbsp;DefaultSite&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Default&nbsp;Web&nbsp;Site"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Stopped"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.DefaultWebSitePath&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"[WindowsFeature]IIS"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Copy&nbsp;the&nbsp;website&nbsp;content</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;WebContent&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SourcePath&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.SourcePath&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestinationPath&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.DestinationPath&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recurse&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$true</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__alias">Type</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Directory"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"[WindowsFeature]AspNet45"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Create&nbsp;a&nbsp;new&nbsp;website</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebsite&nbsp;BakeryWebSite&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.WebsiteName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Started"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.DestinationPath&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"[File]WebContent"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}&nbsp;
+&nbsp;
+<span class="powerShell__com">#&nbsp;Content&nbsp;of&nbsp;configuration&nbsp;data&nbsp;file&nbsp;(e.g.&nbsp;ConfigurationData.psd1)&nbsp;could&nbsp;be:</span>&nbsp;
+&nbsp;
+<span class="powerShell__com">#&nbsp;Hashtable&nbsp;to&nbsp;define&nbsp;the&nbsp;environmental&nbsp;data</span>&nbsp;
+@{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Node&nbsp;specific&nbsp;data</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;AllNodes&nbsp;=&nbsp;@(&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;All&nbsp;the&nbsp;WebServer&nbsp;has&nbsp;following&nbsp;identical&nbsp;information&nbsp;</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NodeName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"*"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebsiteName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"FourthCoffee"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SourcePath&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;"C:\BakeryWebsite\"&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestinationPath&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"C:\inetpub\FourthCoffee"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DefaultWebSitePath&nbsp;=&nbsp;<span class="powerShell__string">"C:\inetpub\wwwroot"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NodeName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"WebServer1.fourthcoffee.com"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Web"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NodeName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"WebServer2.fourthcoffee.com"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Role&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Web"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;);&nbsp;
+}&nbsp;
+&nbsp;
+<span class="powerShell__com">#&nbsp;Pass&nbsp;the&nbsp;configuration&nbsp;data&nbsp;to&nbsp;configuration&nbsp;as&nbsp;follows:</span>&nbsp;
+Sample_xWebsite_FromConfigurationData&nbsp;<span class="powerShell__operator">-</span>ConfigurationData&nbsp;ConfigurationData.psd1</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode"></div>
+<h1 class="endscriptcode" style="margin: 12pt 0in 0pt;"><span style="color: #2e74b5; font-family: Calibri Light; font-size: large;">Example: All Resources (end to end scenario)<br /> </span></h1>
+<h1 class="endscriptcode" style="margin: 12pt 0in 0pt;">
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>PowerShell</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">powershell</span>
+<pre class="hidden"># End to end sample for xWebAdministration 
+ 
+configuration Sample_EndToEndxWebAdministration
+{
+ 
+    Node $AllNodes.NodeName
+    {
+        # Create a Web Application Pool
+        xWebAppPool NewWebAppPool
+        {
+            Name   = $Node.WebAppPoolName
+            Ensure = "Present"
+            State  = "Started"
+        }
+ 
+        #Create a New Website with Port
+        xWebSite NewWebSite
+        {
+            Name   = $Node.WebSiteName
+            Ensure = "Present"
+            BindingInfo = MSFT_xWebBindingInformation
+                        {
+                            Port = $Node.Port
+                        }
+            PhysicalPath = $Node.PhysicalPathWebSite
+            State = "Started"
+            DependsOn = @("[xWebAppPool]NewWebAppPool")
+        }
+      
+        #Create a new Web Application
+        xWebApplication NewWebApplication
+        {
+            Name = $Node.WebApplicationName
+            Website = $Node.WebSiteName
+            WebAppPool =  $Node.WebAppPoolName
+            PhysicalPath = $Node.PhysicalPathWebApplication
+            Ensure = "Present"
+            DependsOn = @("[xWebSite]NewWebSite")
+        }
+ 
+        #Create a new virtual Directory
+        xWebVirtualDirectory NewVirtualDir
+        {
+            Name = $Node.WebVirtualDirectoryName
+            Website = $Node.WebSiteName
+            WebApplication =  $Node.WebApplicationName
+            PhysicalPath = $Node.PhysicalPathVirtualDir
+            Ensure = "Present"
+            DependsOn = @("[xWebApplication]NewWebApplication")
+        }
+ 
+        File CreateWebConfig
+        {
+         DestinationPath = $Node.PhysicalPathWebSite + "\web.config"
+         Contents = "&lt;?xml version=`"1.0`" encoding=`"UTF-8`"?&gt;
+                        &lt;configuration&gt;
+                        &lt;/configuration&gt;"
+                Ensure = "Present"
+         DependsOn = @("[xWebVirtualDirectory]NewVirtualDir")
+        }
+ 
+        xWebConfigKeyValue ModifyWebConfig
+        {
+          Ensure = "Present"
+          ConfigSection = "AppSettings"
+          KeyValuePair = @{key="key1";value="value1"}
+          IsAttribute = $false
+          WebsitePath = "IIS:\sites\" + $Node.WebsiteName
+          DependsOn = @("[File]CreateWebConfig")
+        }
+    }
+}
+
+ 
+#You can place the below in another file to create multiple websites using the same configuration block. 
+
+$Config = @{
+
+    AllNodes = @(
+        @{
+            NodeName = "localhost";
+            WebAppPoolName = "TestAppPool";
+            WebSiteName = "TestWebSite";
+            PhysicalPathWebSite = "C:\web\webSite";
+            WebApplicationName = "TestWebApplication";
+            PhysicalPathWebApplication = "C:\web\webApplication";
+            WebVirtualDirectoryName = "TestVirtualDir";
+            PhysicalPathVirtualDir = "C:\web\virtualDir";
+            Port = 100
+          }
+      )
+   }
+  
+Sample_EndToEndxWebAdministration -ConfigurationData $config
+
+Start-DscConfiguration ./Sample_EndToEndxWebAdministration -wait -Verbose
+</pre>
+<div class="preview">
+<pre class="powershell"><span class="powerShell__com">#&nbsp;End&nbsp;to&nbsp;end&nbsp;sample&nbsp;for&nbsp;xWebAdministration&nbsp;</span>&nbsp;
+&nbsp;&nbsp;
+configuration&nbsp;Sample_EndToEndxWebAdministration&nbsp;
+{&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Node&nbsp;<span class="powerShell__variable">$AllNodes</span>.NodeName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#&nbsp;Create&nbsp;a&nbsp;Web&nbsp;Application&nbsp;Pool</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebAppPool&nbsp;NewWebAppPool&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.WebAppPoolName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;&nbsp;=&nbsp;<span class="powerShell__string">"Started"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#Create&nbsp;a&nbsp;New&nbsp;Website&nbsp;with&nbsp;Port</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebSite&nbsp;NewWebSite&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;&nbsp;&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.WebSiteName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BindingInfo&nbsp;=&nbsp;MSFT_xWebBindingInformation&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Port&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.Port&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.PhysicalPathWebSite&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State&nbsp;=&nbsp;<span class="powerShell__string">"Started"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;=&nbsp;@(<span class="powerShell__string">"[xWebAppPool]NewWebAppPool"</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#Create&nbsp;a&nbsp;new&nbsp;Web&nbsp;Application</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebApplication&nbsp;NewWebApplication&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.WebApplicationName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Website&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.WebSiteName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebAppPool&nbsp;=&nbsp;&nbsp;<span class="powerShell__variable">$Node</span>.WebAppPoolName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.PhysicalPathWebApplication&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;=&nbsp;@(<span class="powerShell__string">"[xWebSite]NewWebSite"</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="powerShell__com">#Create&nbsp;a&nbsp;new&nbsp;virtual&nbsp;Directory</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebVirtualDirectory&nbsp;NewVirtualDir&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.WebVirtualDirectoryName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Website&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.WebSiteName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebApplication&nbsp;=&nbsp;&nbsp;<span class="powerShell__variable">$Node</span>.WebApplicationName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPath&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.PhysicalPathVirtualDir&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;=&nbsp;@(<span class="powerShell__string">"[xWebApplication]NewWebApplication"</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;File&nbsp;CreateWebConfig&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DestinationPath&nbsp;=&nbsp;<span class="powerShell__variable">$Node</span>.PhysicalPathWebSite&nbsp;<span class="powerShell__operator">+</span>&nbsp;<span class="powerShell__string">"\web.config"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contents&nbsp;=&nbsp;<span class="powerShell__string">"&lt;?xml&nbsp;version=`"</span>1.0`<span class="powerShell__string">"&nbsp;encoding=`"</span>UTF<span class="powerShell__operator">-</span>8`"?&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;configuration&gt;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="powerShell__operator">/</span>configuration&gt;"&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;=&nbsp;@(<span class="powerShell__string">"[xWebVirtualDirectory]NewVirtualDir"</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xWebConfigKeyValue&nbsp;ModifyWebConfig&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensure&nbsp;=&nbsp;<span class="powerShell__string">"Present"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConfigSection&nbsp;=&nbsp;<span class="powerShell__string">"AppSettings"</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KeyValuePair&nbsp;=&nbsp;@{key=<span class="powerShell__string">"key1"</span>;value=<span class="powerShell__string">"value1"</span>}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IsAttribute&nbsp;=&nbsp;<span class="powerShell__variable">$false</span>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebsitePath&nbsp;=&nbsp;"IIS:\sites\"&nbsp;<span class="powerShell__operator">+</span>&nbsp;<span class="powerShell__variable">$Node</span>.WebsiteName&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DependsOn&nbsp;=&nbsp;@(<span class="powerShell__string">"[File]CreateWebConfig"</span>)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+}&nbsp;
+&nbsp;
+&nbsp;&nbsp;
+<span class="powerShell__com">#You&nbsp;can&nbsp;place&nbsp;the&nbsp;below&nbsp;in&nbsp;another&nbsp;file&nbsp;to&nbsp;create&nbsp;multiple&nbsp;websites&nbsp;using&nbsp;the&nbsp;same&nbsp;configuration&nbsp;block.&nbsp;</span>&nbsp;
+&nbsp;
+<span class="powerShell__variable">$Config</span>&nbsp;=&nbsp;@{&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;AllNodes&nbsp;=&nbsp;@(&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NodeName&nbsp;=&nbsp;<span class="powerShell__string">"localhost"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebAppPoolName&nbsp;=&nbsp;<span class="powerShell__string">"TestAppPool"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebSiteName&nbsp;=&nbsp;<span class="powerShell__string">"TestWebSite"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPathWebSite&nbsp;=&nbsp;<span class="powerShell__string">"C:\web\webSite"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebApplicationName&nbsp;=&nbsp;<span class="powerShell__string">"TestWebApplication"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPathWebApplication&nbsp;=&nbsp;<span class="powerShell__string">"C:\web\webApplication"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebVirtualDirectoryName&nbsp;=&nbsp;<span class="powerShell__string">"TestVirtualDir"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalPathVirtualDir&nbsp;=&nbsp;<span class="powerShell__string">"C:\web\virtualDir"</span>;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Port&nbsp;=&nbsp;100&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;
+&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;&nbsp;&nbsp;
+Sample_EndToEndxWebAdministration&nbsp;<span class="powerShell__operator">-</span>ConfigurationData&nbsp;<span class="powerShell__variable">$config</span>&nbsp;
+&nbsp;
+Start<span class="powerShell__operator">-</span>DscConfiguration&nbsp;.<span class="powerShell__operator">/</span>Sample_EndToEndxWebAdministration&nbsp;<span class="powerShell__operator">-</span>wait&nbsp;<span class="powerShell__operator">-</span>Verbose&nbsp;
+</pre>
+</div>
+</div>
+</div>
+<div class="endscriptcode">&nbsp;</div>
+</h1>
+<h1 class="endscriptcode" style="margin: 12pt 0in 0pt;"><span style="color: #2e74b5; font-family: Calibri Light; font-size: large;">Versions</span></h1>
+<div class="endscriptcode"></div>
+<p class="endscriptcode" style="margin: 0in 0in 8pt;"><span style="font-family: Calibri; font-size: small;">1.0.0.0</span></p>
+<div class="endscriptcode"></div>
+<div class="endscriptcode">
+<ul style="list-style-type: disc; direction: ltr;">
+<li style="color: #000000; font-style: normal; font-weight: normal;">
+<p style="color: #000000; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 0pt;"><span style="font-size: small;">Initial release with the following resources</span></p>
+<ul style="list-style-type: circle;">
+<li style="color: #000000; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; font-size: 11pt; font-style: normal; font-weight: normal;">
+<p style="color: #000000; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; font-size: 11pt; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 8pt;"><span style="font-size: small;">xWebsite</span></p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div style="color: #000000; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; font-size: 11pt; font-style: normal; font-weight: normal;">
+<p style="color: #000000; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; font-size: 11pt; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 8pt;"><span style="font-size: small;">1.1.0.0 </span></p>
+<ul>
+<li>
+<p style="color: #000000; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; font-size: 11pt; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 8pt;">Added support for HTTPS protocol</p>
+</li>
+</ul>
+<ul>
+<li>
+<p style="color: #000000; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; font-size: 11pt; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 8pt;">Updated binding information to include Certificate inforation for HTTPS</p>
+</li>
+<li>
+<p style="color: #000000; font-family: &quot;Calibri&quot;,&quot;sans-serif&quot;; font-size: 11pt; font-style: normal; font-weight: normal; margin-top: 0in; margin-bottom: 8pt;">Removed protocol property. Protocol is included in binding information</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>Bug fixes</p>
+</li>
+</ul>
+<span style="font-size: small;">
+<p>1.2</p>
+</span> 
+<ul>
+<li>Added the <span style="font-size: small;"><strong>xWebAppPool</strong>, <strong> &nbsp;</strong><strong>xWebApplication</strong>, <strong>xWebVirtualDirectory</strong><strong> &amp; xWebConfigKeyValue</strong></span> </li>
+</ul>
+<span style="font-size: small;">&nbsp;</span></div>

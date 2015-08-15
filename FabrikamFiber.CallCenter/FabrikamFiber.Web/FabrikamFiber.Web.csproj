@@ -196,6 +196,8 @@
     </Content>
     <!-- <Content Include="Scripts\CodeController.js" /> </Content> -->
     <!--<Content Include="Scripts\CodeControllerTest.js" /></Content> -->
+    <Content Include="Deploy\xWebAdministration\TechNetDocumentation-xWebAdministration.html" />
+    <Content Include="Deploy\xWebAdministration\_PSGetItemInfo.xml" />
     <Content Include="Scripts\jquery.uitablefilter.js" />
     <Compile Include="ViewModels\AssignViewModel.cs" />
     <Compile Include="ViewModels\EmployeeReportViewModel.cs" />
@@ -453,6 +455,23 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <None Include="CodeTemplates\Scaffolders\MvcScaffolding.Controller\ControllerWithRepository.cs.t4" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_WebConfigConnectionString\MSFT_WebConfigConnectionString.psm1" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_WebConfigConnectionString\MSFT_WebConfigConnectionString.schema.mof" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebApplication\MSFT_xWebApplication.psm1" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebApplication\MSFT_xWebApplication.schema.mof" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebAppPool\MSFT_xWebAppPool.psm1" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebAppPool\MSFT_xWebAppPool.schema.mof" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebConfigKeyValue\MSFT_xWebConfigKeyValue.psm1" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebConfigKeyValue\MSFT_xWebConfigKeyValue.schema.mof" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebsite\MSFT_xWebsite.psm1" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebsite\MSFT_xWebsite.schema.mof" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebVirtualDirectory\MSFT_xWebVirtualDirectory.psm1" />
+    <Content Include="Deploy\xWebAdministration\DSCResources\MSFT_xWebVirtualDirectory\MSFT_xWebVirtualDirectory.schema.mof" />
+    <Content Include="Deploy\xWebAdministration\Ms-LPL_2010.docx" />
+    <Content Include="Deploy\xWebAdministration\xWebAdministration.psd1" />
+    <Content Include="Deploy\Fab_Configuration.ps1" />
+    <Content Include="Deploy\Fab_DataScript.ps1" />
+    <Content Include="Deploy\InstallModules.ps1" />
     <None Include="readme.txt" />
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
