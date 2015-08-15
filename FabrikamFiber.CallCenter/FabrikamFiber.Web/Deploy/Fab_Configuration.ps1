@@ -1,6 +1,10 @@
 ﻿param
 (
-    [string]$applicationPath
+    [string]$applicationPath,
+	[string]$dbuser,
+	[string]$dbpassword,
+	[string]$appuser,
+	[string]$apppassword
 )
 
 $ConfigData = 
@@ -9,15 +13,15 @@ $ConfigData =
 		@{ NodeName = "*"},
 
         @{	NodeName = "localhost";
-            WebsiteName = "FFWeb"
-            WebsiteBitsSourcePath = $applicationPath + "\FabrikamFiber.CallCenter\FabrikamFiber.Web"
-			DeploymentPath = $env:SystemDrive + "\inetpub\FFWeb"
-            FFExpressConnection = "data source=.;Integrated Security=True;Initial Catalog=FabrikamFiber-Express;User Id='" + "fareast\lmtstlab" + "'"
+            WebsiteName = "Fabrikam"
+            WebsiteBitsSourcePath = $applicationPath
+			DeploymentPath = $env:SystemDrive + "\inetpub\Fabrikam"
+            FFExpressConnection = "data source=.;Integrated Security=True;Initial Catalog=FabrikamFiber-Express;User Id='" + $dbuser + "';Password='" + $dbpassword + "'"
             ConnectionStringProvider = "System.Data.SqlClient"
-            WebAppPoolName = "FabrikamPool"
-            WebsitePort = "81"
-            UserName = "fareast\lmtstlab"
-            Password = "ipl@2015"
+            WebAppPoolName = "Fabrikam"
+            WebsitePort = "80"
+            UserName = $appuser
+            Password = $apppassword
         }
     )
 }
@@ -46,33 +50,33 @@ Configuration FabFiber
 		}
 
 
-            WindowsFeature WebScriptingTools
-              {
-                     Ensure = "Present"
-                     Name = "Web-Scripting-Tools"
-                     DependsOn = "[File]CopyDeploymentBits"
-              }
+        WindowsFeature WebScriptingTools
+        {
+                Ensure = "Present"
+                Name = "Web-Scripting-Tools"
+                DependsOn = "[File]CopyDeploymentBits"
+        }
 
-              WindowsFeature WebDAVPublishing
-             {
-                    Ensure = "Present"
-                    Name = "Web-DAV-Publishing"
-                    DependsOn = "[WindowsFeature]WebScriptingTools"
-             }
+        WindowsFeature WebDAVPublishing
+		{
+            Ensure = "Present"
+            Name = "Web-DAV-Publishing"
+            DependsOn = "[WindowsFeature]WebScriptingTools"
+        }
 
-              WindowsFeature NETFramework45ASPNET
-              {
-                     Ensure = "Present"
-                     Name = "NET-Framework-45-ASPNET"
-                     DependsOn = "[WindowsFeature]WebDAVPublishing"
-              }
+        WindowsFeature NETFramework45ASPNET
+        {
+                Ensure = "Present"
+                Name = "NET-Framework-45-ASPNET"
+                DependsOn = "[WindowsFeature]WebDAVPublishing"
+        }
 
-              WindowsFeature AspNet45
-              {
-                     Ensure = "Present"
-                     Name = "Web-Asp-Net45"
-                     DependsOn = "[WindowsFeature]NETFramework45ASPNET"
-              } 
+        WindowsFeature AspNet45
+        {
+                Ensure = "Present"
+                Name = "Web-Asp-Net45"
+                DependsOn = "[WindowsFeature]NETFramework45ASPNET"
+        } 
 
 
 		WindowsFeature IIS
