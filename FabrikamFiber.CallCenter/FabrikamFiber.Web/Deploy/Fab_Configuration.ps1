@@ -5,7 +5,8 @@
 	[string]$dbpassword,
 	[string]$appuser,
 	[string]$apppassword,
-	[string]$datasource
+	[string]$datasource,
+	[string]$intsec
 )
 
 $ConfigData = 
@@ -17,7 +18,7 @@ $ConfigData =
             WebsiteName = "Fabrikam"
             WebsiteBitsSourcePath = $applicationPath
 			DeploymentPath = $env:SystemDrive + "\inetpub\Fabrikam"
-            FFExpressConnection = "data source=" + $datasource + ";Integrated Security=True;Initial Catalog=FabrikamFiber-Express;User Id='" + $dbuser + "';Password='" + $dbpassword + "'"
+            FFExpressConnection = "data source=" + $datasource + ";Integrated Security=" + $intsec + ";Initial Catalog=FabrikamFiber-Express;User Id='" + $dbuser + "';Password='" + $dbpassword + "'"
             ConnectionStringProvider = "System.Data.SqlClient"
             WebAppPoolName = "Fabrikam"
             WebsitePort = "81"
